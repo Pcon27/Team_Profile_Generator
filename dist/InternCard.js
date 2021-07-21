@@ -4,7 +4,7 @@ const internCard = (data) =>
 `<div class="card" style="width: 18rem;">
 <div class="card-body">
   <h5 class="name">${data.employeeName}</h5>
-  <p class="title">${data.employeeRole}</p>
+  <p class="title">${data.role}</p>
 </div>
 <ul class="list-group list-group-flush">
   <li class="ID">ID: ${data.employeeID}</li>

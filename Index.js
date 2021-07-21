@@ -84,7 +84,7 @@ const starterQuestion = () => {
     .prompt(promptQuestion) 
 
     .then((data) => {
-        data.prompt==="yes"? roleQuestionFunc() : console.log("wawa")
+        data.prompt==="yes"? roleQuestionFunc() : renderHTML()
     })
 };
 
@@ -94,19 +94,19 @@ function roleQuestionFunc(){
 
     .then ((data) => {
         if (data.role==="Manager"){
-            askManagerQuestions()
+            askManagerQuestions(data.role)
         // .then((data) =>{
         //     employees.push(new Manager(data.employeeName, data.employeeID, data.employeeID, data.employeeEmail, data.office))
         // })
         } 
         else if (data.role==="Engineer") {
-            askEngineerQuestions()
+            askEngineerQuestions(data.role)
         // .then((data) =>{
         //     employees.push(new Engineer(data.employeeName, data.employeeID, data.employeeID, data.employeeEmail, data.github))
         // })
         } 
         else{
-         askInternQuestions()
+         askInternQuestions(data.role)
         //  .then((data) =>{
         //     employees.push(new Intern(data.employeeName, data.employeeID, data.employeeID, data.employeeEmail, data.school))
         // })
@@ -115,36 +115,36 @@ function roleQuestionFunc(){
 
 };
 
-function askManagerQuestions() {
+function askManagerQuestions(role) {
     inquirer
     .prompt(managerQuestions)
 
     .then((data) =>{
-        employees.push(new Manager(data.employeeName, data.employeeID, data.employeeEmail, data.office))
+        employees.push(new Manager(data.employeeName, data.employeeID, data.employeeEmail, data.office, role))
     })
 
     .then (() => {
         starterQuestion()
     })
 }
-function askEngineerQuestions() {
+function askEngineerQuestions(role) {
     inquirer
     .prompt(engineerQuestions)
 
     .then((data) =>{
-        employees.push(new Engineer(data.employeeName, data.employeeID, data.employeeEmail, data.github))
+        employees.push(new Engineer(data.employeeName, data.employeeID, data.employeeEmail, data.github, role))
     })
 
     .then (() => {
         starterQuestion()
     })
 }
-function askInternQuestions() {
+function askInternQuestions(role) {
     inquirer
     .prompt(internQuestions)
 
     .then((data) =>{
-        employees.push(new Intern(data.employeeName, data.employeeID, data.employeeEmail, data.school))
+        employees.push(new Intern(data.employeeName, data.employeeID, data.employeeEmail, data.school, role))
     })
 
     .then (() => {
@@ -153,6 +153,7 @@ function askInternQuestions() {
 }
 
 starterQuestion();
+
 
 
 function renderHTML() {
@@ -171,12 +172,18 @@ function renderHTML() {
         const newEmployee = new Intern(employees[i].employeeName, employees[i].employeeID, employees[i].employeeEmail, employees[i].school, employees[i].role)
         const newCard = InternCard(newEmployee)
         allEmployees.push(newCard)
-    }
-    }
-const Template = allEmployees.join("")
-const finalPage = MainSite(Template)
-fs.writeFile("teamMembers.html", finalPage, (err) =>
-    err ? console.log("error!") : console.log("your team page has been created!")
 
+        console.log(newCard)
+    }
+    }
+    const Template = allEmployees.join("")
+    const finalPage = MainSite(Template)
+    fs.writeFile("teamMembers.html", finalPage, (err) =>
+     err ? console.log("error!") : console.log("your team page has been created!"))
+
+     console.log(employees)
 
 }
+
+
+
