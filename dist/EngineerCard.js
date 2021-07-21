@@ -7,8 +7,8 @@ const engineerCard = (data) =>
 </div>
 <ul class="list-group list-group-flush">
   <li class="ID">ID: ${data.employeeID}</li>
-  <a href="${data.employeeEmail}" class="card-link">Another link</a>
-  <a href="https://github.com/${data.office}" class="card-link">Card link</a>
+  <a href="${data.employeeEmail}" class="card-link">${data.employeeEmail}</a>
+  <a href="https://github.com/${data.office}" class="card-link">"https://github.com/${data.office}"</a>
   
 </ul>
 </div>`

@@ -95,21 +95,12 @@ function roleQuestionFunc(){
     .then ((data) => {
         if (data.role==="Manager"){
             askManagerQuestions(data.role)
-        // .then((data) =>{
-        //     employees.push(new Manager(data.employeeName, data.employeeID, data.employeeID, data.employeeEmail, data.office))
-        // })
         } 
         else if (data.role==="Engineer") {
             askEngineerQuestions(data.role)
-        // .then((data) =>{
-        //     employees.push(new Engineer(data.employeeName, data.employeeID, data.employeeID, data.employeeEmail, data.github))
-        // })
         } 
         else{
          askInternQuestions(data.role)
-        //  .then((data) =>{
-        //     employees.push(new Intern(data.employeeName, data.employeeID, data.employeeID, data.employeeEmail, data.school))
-        // })
     }
     })
 
